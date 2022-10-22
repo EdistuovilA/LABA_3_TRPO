@@ -14,11 +14,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StartApp extends JFrame{
-    private JFrame frame;
+    private static JFrame frame;
     private JPanel bottomPanel;
     private Button ButtonAdd;
     private Button ButtonSearch;
     JTextField bigField;
+
+    private static boolean visible = false;
 
     public static void main(String[] args) {
         StartApp app = new StartApp();
@@ -32,46 +34,34 @@ public class StartApp extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.setLayout(new GridBagLayout());
 
-        Container mainContainer = frame.getContentPane();
-        mainContainer.setLayout(new BorderLayout());
-
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 2));
-        bottomPanel.setSize(900, 100);
-
-        mainContainer.add(bottomPanel, BorderLayout.SOUTH);
+        bottomPanel.setSize(100, 100);
+        frame.add(bottomPanel);
 
         ButtonSearch = new Button("Найти");
-        ButtonSearch.addActionListener(e -> searchClient());
+        ButtonSearch.addActionListener(e -> searchPanel());
         bottomPanel.add(ButtonSearch);
 
         ButtonAdd = new Button("Добавить");
-        ButtonAdd.addActionListener(e -> addClient());
+        ButtonAdd.addActionListener(e -> addPanel());
         bottomPanel.add(ButtonAdd);
 
-        // Создание текстовых полей
-        bigField = new JTextField(30);
-        bigField.setToolTipText("ФИО");
-
-        JPanel contents = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        contents.add(new JLabel("ФИО :"));
-        contents.add(bigField  );
-        setContentPane(contents);
-
-        mainContainer.add(contents, BorderLayout.CENTER);
-    }
-
-    private void searchClient() {
-
 
     }
 
-    private void addClient() {
-        Client client = new Client(bigField.getText());
-        Client.print();
+    private void searchPanel() {
+        SearchPanel searchPanel = new SearchPanel();
+        frame.setVisible(false);
     }
 
-    public void start() {
-        frame.setVisible(true);
+    private void addPanel() {
+        AddPanel addPanel = new AddPanel();
+        frame.setVisible(false);
+    }
+
+    public static void start() {
+        visible = !visible;
+        frame.setVisible(visible);
     }
 }
