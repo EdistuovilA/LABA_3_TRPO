@@ -56,18 +56,60 @@ public class Client {
         addThisClient.executeUpdate();
     }
 
+    public static void addInfoTour() throws SQLException {
+
+        Statement statement =
+                connection.createStatement();
+        ResultSet res = statement.executeQuery("SELECT COUNT(id_client) FROM INFO_TOUR");
+
+        int maxId = 0;
+        while (res.next()){
+            maxId = res.getInt("count") + 1;
+        }
+
+        PreparedStatement addThisInfoTour =
+                connection.prepareStatement("INSERT INTO INFO_TOUR VALUES (?, ?, ?, ?, ?)");
+
+        addThisInfoTour.setInt(1,  maxId);
+        addThisInfoTour.setString(2, TourPanel.seasonList.getSelectedItem().toString());
+        addThisInfoTour.setString(3, TourPanel.resting_placeList.getSelectedItem().toString());
+        addThisInfoTour.setInt(4, Integer.parseInt(TourPanel.durationField.getText()));
+        addThisInfoTour.setInt(5, Integer.parseInt(TourPanel.budgetField.getText()));
+
+        addThisInfoTour.executeUpdate();
+    }
+
+
     public static void searchClient() throws SQLException {
 
-        Statement searchThisClient =
+
+        Statement statement =
                 connection.createStatement();
 
-        String sql = "SELECT* FROM CLIENTS WHERE name='" + SearchPanel.nameField.getText().toString() + "'";
+        ResultSet res = statement.executeQuery("SELECT name, age, season, resting_place, budget FROM CLIENTS JOIN INFO_TOUR USING (id_client) WHERE NAME='" + SearchPanel.nameField.getText().toString() + "'");
 
-        ResultSet resultSet = searchThisClient.executeQuery(sql);
-
-        while (resultSet.next()){
-            System.out.println(resultSet.getString("name") + " " + resultSet.getInt("id_client"));
+        while (res.next()){
+            System.out.print("Имя : " + res.getString("name") + " ");
+            System.out.print("Возраст : " + res.getInt("age") + " ");
+            System.out.print("Сезон отдыха : " + res.getString("season") + " ");
+            System.out.print("Место отдыха : " + res.getString("resting_place") + " ");
+            System.out.print("Бюджет : " + res.getInt("budget"));
         }
+
+
+
+
+
+//        Statement searchThisClient =
+//                connection.createStatement();
+//
+//        String sql = "SELECT* FROM CLIENTS WHERE name='" + SearchPanel.nameField.getText().toString() + "'";
+//
+//        ResultSet resultSet = searchThisClient.executeQuery(sql);
+//
+//        while (resultSet.next()){
+//            System.out.println(resultSet.getString("name") + " " + resultSet.getInt("id_client"));
+//        }
     }
 
 
@@ -118,11 +160,11 @@ public class Client {
 }
 
 enum EDUCATION {
-    BasicGeneralEducation, //(9 РєР»Р°СЃСЃРѕРІ)
-    SecondarySchool, //(11 РєР»Р°СЃСЃРѕРІ)
-    LowerVocationalEducation, //РЎСЂРµРґРЅРµРµ РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅРѕРµ РѕР±СЂР°Р·РѕРІР°РЅРёРµ
-    BachelorDegree, //Р‘Р°РєР°Р»Р°РІСЂРёР°С‚
-    MasterDegree //РњР°РіРёСЃС‚СЂР°С‚СѓСЂР°
+    BasicGeneralEducation, //(9 классов)
+    SecondarySchool, //(11 классов)
+    LowerVocationalEducation, //Среднее профессиональное образование
+    BachelorDegree, //Бакалавриат
+    MasterDegree //Магистратура
 }
 
 enum SOCIAL_STATUS {

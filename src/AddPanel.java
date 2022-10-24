@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class AddPanel extends JFrame {
 
-    private JFrame frameAddPanel;
+    private static JFrame frameAddPanel;
     private JPanel bottomPanel;
     private Button ButtonAdd;
     private Button ButtonBack;
@@ -58,20 +58,30 @@ public class AddPanel extends JFrame {
         bottomPanel.setSize(20, 20);
         frameAddPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        ButtonAdd = new Button("Добавить");
+//        ButtonAdd = new Button("Добавить");
+//        ButtonAdd.addActionListener(e -> {
+//            try {
+//                Client.addClient();
+//                nameField.setText("");
+//                ageField.setText("");
+//                incomeField.setText("");
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+
+        ButtonAdd = new Button("Далее");
         ButtonAdd.addActionListener(e -> {
             try {
                 Client.addClient();
-                nameField.setText("");
-                ageField.setText("");
-                incomeField.setText("");
+                addTourPanel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
         ButtonBack = new Button("Назад");
-        ButtonBack.addActionListener(e -> isVisibleAddPanel());
+        ButtonBack.addActionListener(e -> backPanel());
 
         bottomPanel.add(ButtonBack, BorderLayout.SOUTH);
         bottomPanel.add(ButtonAdd, BorderLayout.SOUTH);
@@ -79,9 +89,21 @@ public class AddPanel extends JFrame {
         //setContentPane(contents);
         mainContainer.add(contents, BorderLayout.CENTER);
 
-        isVisibleAddPanel();
+        backPanel();
     }
-    public void isVisibleAddPanel(){
+
+    private void addTourPanel() {
+        TourPanel tourPanel = new TourPanel();
+        frameAddPanel.setVisible(false);
+    }
+    public static void isVisibleAddPanel(){
+        visibleAdd = !visibleAdd;
+        frameAddPanel.setVisible(visibleAdd);
+
+    }
+
+
+    public static void backPanel(){
         visibleAdd = !visibleAdd;
         frameAddPanel.setVisible(visibleAdd);
 
