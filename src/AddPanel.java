@@ -38,7 +38,7 @@ public class AddPanel extends JFrame {
         educationList = new JComboBox(new String[]{"Среднее профессиональное образование", "Бакалавриат", "Магистратура"});
         educationList.setSelectedIndex(0);
 
-        socialStatusList = new JComboBox(new String[]{"Крепостной", "Дворянин", "Царь"});
+        socialStatusList = new JComboBox(new String[]{"Выживающий", "Средний класс", "Состоятельный"});
         socialStatusList.setSelectedIndex(0);
 
         JPanel contents = new JPanel(new FlowLayout(FlowLayout.CENTER));
