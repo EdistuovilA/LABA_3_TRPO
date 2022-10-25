@@ -2,17 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class SearchPanel {
+public class SearchPanel extends JFrame{
 
     private JFrame frameSearchPanel;
     private JPanel bottomPanel;
     private Button ButtonSearch;
     private Button ButtonBack;
     static public JTextField nameField;
-    static public JTextField ageField;
-    static public JTextField incomeField;
-    static public JComboBox educationList;
-    static public JComboBox socialStatusList;
 
     static public boolean visibleSearch = false;
 
@@ -33,8 +29,6 @@ public class SearchPanel {
         JPanel contents = new JPanel(new FlowLayout(FlowLayout.CENTER));
         contents.add(new JLabel("ФИО :"));
         contents.add(nameField);
-
-       // setContentPane(contents);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 2));
@@ -57,7 +51,6 @@ public class SearchPanel {
         bottomPanel.add(ButtonBack, BorderLayout.SOUTH);
         bottomPanel.add(ButtonSearch, BorderLayout.SOUTH);
 
-     //   setContentPane(contents);
         mainContainer.add(contents, BorderLayout.CENTER);
 
         isVisibleSearchPanel();

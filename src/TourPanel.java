@@ -2,8 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class TourPanel {
-
+public class TourPanel extends JFrame{
     private static JFrame frameTourPanel;
     private JPanel bottomPanel;
     private Button ButtonAdd;
@@ -17,8 +16,8 @@ public class TourPanel {
     static public boolean visibleTour = false;
 
     public static void main(String[] args) {
-        TourPanel tourPanel = new TourPanel();
-        tourPanel.isVisibleTourPanel();
+//        TourPanel tourPanel = new TourPanel();
+//        tourPanel.isVisibleTourPanel();
     }
 
     public TourPanel() {
@@ -77,7 +76,6 @@ public class TourPanel {
         bottomPanel.add(ButtonBack, BorderLayout.SOUTH);
         bottomPanel.add(ButtonAdd, BorderLayout.SOUTH);
 
-        //setContentPane(contents);
         mainContainer.add(contents, BorderLayout.CENTER);
 
         backPanel();

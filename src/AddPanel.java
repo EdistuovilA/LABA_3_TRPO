@@ -58,18 +58,6 @@ public class AddPanel extends JFrame {
         bottomPanel.setSize(20, 20);
         frameAddPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-//        ButtonAdd = new Button("Добавить");
-//        ButtonAdd.addActionListener(e -> {
-//            try {
-//                Client.addClient();
-//                nameField.setText("");
-//                ageField.setText("");
-//                incomeField.setText("");
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
-
         ButtonAdd = new Button("Далее");
         ButtonAdd.addActionListener(e -> {
             try {
@@ -86,7 +74,6 @@ public class AddPanel extends JFrame {
         bottomPanel.add(ButtonBack, BorderLayout.SOUTH);
         bottomPanel.add(ButtonAdd, BorderLayout.SOUTH);
 
-        //setContentPane(contents);
         mainContainer.add(contents, BorderLayout.CENTER);
 
         backPanel();
