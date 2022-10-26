@@ -104,20 +104,20 @@ public class Client {
         Statement statement =
                 connection.createStatement();
 
-        ResultSet res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Царь'");
+        ResultSet res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Состоятельный'");
 
         while (res.next())
             System.out.print("Популярное место отдыха для Состоятельных- " + res.getString("mode") + "\n");
 
-        res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Крепостной'");
+        res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Выживающий'");
 
         while (res.next())
             System.out.print("Популярное место отдыха для Выживающих - " + res.getString("mode") + "\n");
 
-        res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Дворянин'");
+        res = statement.executeQuery("SELECT mode() WITHIN GROUP (ORDER BY resting_place) from info_tour join clients c on info_tour.id_client = c.id_client where social_status='Средний класс'");
 
         while (res.next())
-            System.out.print("Популярное место отдыха для Состоятельных - " + res.getString("mode") + "\n");
+            System.out.print("Популярное место отдыха для Среднего класса - " + res.getString("mode") + "\n");
 
     }
 
